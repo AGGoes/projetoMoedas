@@ -1,23 +1,24 @@
-import * as http from 'node:http';
 import pegarMoedasController from './controllers/moedasController.js';
+import express from 'express';
 
-let siglaMoedas = ['EUR','JPY','GBP']
+const porta = 8080;
+const app = express();
 
-const server = http.createServer(async(req, res)=>{
+app.get('/cotacoes/:moedas',async (req,res)=>{
+    
     try{
-        const moedas = await pegarMoedasController(siglaMoedas);
-
-        res.writeHead(200,{
-            'content-type':'application/json; charset=utf-8'
-        })
-
-        res.end(JSON.stringify(moedas))
+        const arrayMoedas = req.params.moedas.split('-');
+        const resposta = await pegarMoedasController(arrayMoedas);
+        
+        return res.status(200).json(resposta);
     }catch(error){
-        res.writeHead(500,{'content-type':'application/json'});
-        res.end(JSON.stringify({erro:'Falha ao buscar cotação'}))
+        console.error('Erro:', error.message);
+        return res.status(500).json({ erro: 'Falha ao buscar cotações' });
     }
+
+    res.status(200).json(resposta);
 })
 
-server.listen(8080,()=>{
-    console.log('Servidor funcionando em http://localhost:8080')
-});
+const servidor = app.listen(porta,()=>{
+    console.log(`Servidor operando na URL: http://localhost:${porta}`)
+})

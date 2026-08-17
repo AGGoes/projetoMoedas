@@ -10,7 +10,7 @@ async function pegarMoedas(moedas = ['USD']) {
         return await resposta.json();
     })
 
-    const conjunto = await Promise.all(promessas);
+    const conjunto = await Promise.allSettled(promessas);
     return conjunto;
     
 }

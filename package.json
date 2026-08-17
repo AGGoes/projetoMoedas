@@ -6,10 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run-watch": "node --watch index.js",
-    "run":"node index.js"
-
+    "run": "node index.js"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
