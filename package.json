@@ -1,0 +1,15 @@
+{
+  "name": "analistamoedas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run-watch": "node --watch index.js",
+    "run":"node index.js"
+
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
